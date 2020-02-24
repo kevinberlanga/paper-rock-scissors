@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Paper, Rock, Scissors!
+        </title>
+    </head>
+
+    <body>
+       <h1> Paper, Rock, Scissors! </h1>
+       
+       <script>
+
+           // 1. Since game is against computer, we need a computer function computerSelection that will randomly
+           // return a selection "paper," "rock," or "scissors".
+           // 2. Function should take 2 parameters (playerSelection, computerSelection), and return a string that declares
+           // the winner of the game. 
+                // 2a. Function should be case insensitive
+                // 2b. You must return the results of the call function, not console.log it. To test function console.log it! 
+
+
+
+            function paperRockScissors (playerSelection, computerSelection) {
+                let upPSelection= playerSelection.toUpperCase();
+                upPSelection= upPSelection.slice(0,1);
+                let loPSelection= playerSelection.toLowerCase();
+                loPSelection= loPSelection.slice(1);
+                let pSelection= upPSelection + loPSelection;
+
+                if (pSelection==computerSelection ) {
+                   return console.log(`Tie! There is no winner since ${pSelection} has the same power as ${computerSelection}.`)
+                } else if (pSelection=="Rock" && computerSelection === "Scissors" || pSelection==="Paper" && computerSelection==="Rock" || pSelection==="Scissors" && computerSelection === "Paper"){
+                    console.log(`YOU WIN! ${pSelection} is greater in power than computer's ${computerSelection}.`)
+                    return "player"
+                } else {
+                    console.log(`COMPUTER WINS! Unfortunately your choice of ${pSelection} was no feat for computer's ${computerSelection}.`)
+                    return "computer"
+                }
+            }
+
+                function cSelection () {
+                    let choices = ["Paper", "Rock", "Scissors"];
+                    let randomNum= Math.floor(Math.random()*3);
+                    return choices[randomNum]
+                }
+
+            //3. Writing a new function called game that plays 5 rounds of ppr, keeps and returns score, as well as returns winner
+            function gamePlay (pprPlay, computerSelection) {
+                let pScore= 0;
+                let cScore= 0;
+                let tie= 0;
+                for (let i=1; i<6; i++) {
+                    let playerSelection= prompt("What's your weapon, Soldier? Paper, Rock, or Scissors?", " ");
+                    let computerSelection= cSelection();
+                    let gameWinner= undefined;
+                    gameWinner= pprPlay(playerSelection, computerSelection);
+                    (gameWinner == "player") ? pScore += 1 : (gameWinner=="computer") ? cScore += 1 : tie +=1;
+                }
+
+                let winner= (pScore==cScore) ? "TIE! NO WINNER HERE.": (pScore > cScore) ? "YYOU WIN THIS MATCH!": "OH NO! COMPUTER WINS THIS MATCH! Try again.";
+                let finalScore= `${winner} Final Score: Player- ${pScore} Computer- ${cScore} Tie- ${tie}`
+                console.log(finalScore);
+            }
+
+       </script>
+    </body>
+
+</html>
